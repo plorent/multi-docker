@@ -3,8 +3,6 @@ services:
   - docker
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install python3
   - docker build -t plorent/react-test -f ./client/Dockerfile.dev ./client
 
 script:
@@ -19,7 +17,7 @@ after_success:
   - docker --version
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
-  - eval $(aws ecr get-login --no-include-email --region us-east-1 | sed 's|https://||')
+  - eval $(aws ecr get-login --no-include-email --region eu-west-1)
   - docker push 060712730170.dkr.ecr.eu-west-1.amazonaws.com/multi-client
   - docker push 060712730170.dkr.ecr.eu-west-1.amazonaws.com/multi-nginx
   - docker push 060712730170.dkr.ecr.eu-west-1.amazonaws.com/multi-server
