@@ -9,3 +9,8 @@ docker push plorent/multi-worker:latest
 docker push plorent/multi-client:$SHA
 docker push plorent/multi-server:$SHA
 docker push plorent/multi-worker:$SHA
+
+kubectl apply -f k8s
+kubectl set image deployments/server-deployment server=plorent/multi-server:$SHA
+kubectl set image deployments/client-deployment client=plorent/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=plorent/multi-worker:$SHA
