@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: peter-lorent-com-tls
+spec:
+  secretName: peter-lorent-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: peterlorent.com
+  dnsNames:
+    - peterlorent.com
+    - www.peterlorent.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - peterlorent.com
+          - www.peterlorent.com
